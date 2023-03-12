@@ -3,17 +3,22 @@ import { Component } from 'react';
 class Form extends Component {
   state = {
     name: '',
+    number: '',
   };
 
   handleChange = e => {
+    // console.log(e.target);
+    // console.log(e.target.name);
+    // console.log(e.target.value);
+
     this.setState({
-      name: e.currentTarget.value,
+      [e.target.name]: e.target.value,
     });
   };
 
   handleSubmitForm = e => {
     e.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     this.props.onSubmit(this.state);
     this.resetInput();
   };
@@ -21,12 +26,14 @@ class Form extends Component {
   resetInput = () => {
     this.setState({
       name: '',
+      number: '',
     });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmitForm}>
+        <h2>{this.props.title}</h2>
         <label htmlFor="id-1">
           Name
           <input
@@ -37,6 +44,19 @@ class Form extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             value={this.state.name}
+            onChange={this.handleChange}
+          />
+        </label>
+        <label htmlFor="id-2">
+          Number
+          <input
+            type="tel"
+            name="number"
+            id="id-2"
+            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            required
+            value={this.state.number}
             onChange={this.handleChange}
           />
         </label>
