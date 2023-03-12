@@ -6,7 +6,12 @@ import Filter from './Filter';
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     name: '',
     filter: '',
   };
@@ -51,7 +56,7 @@ class App extends Component {
         }}
       >
         <Form onSubmit={this.addContact} title="Phonebook" />
-        <Contacts contacts={this.filterContacts} title="Contacts">
+        <Contacts contacts={this.state.contacts} title="Contacts">
           <Filter
             title="Find contacts by name"
             value={this.state.filter}
@@ -64,20 +69,3 @@ class App extends Component {
 }
 
 export default App;
-
-// export const App = () => {
-//   return (
-//     <div
-//       style={{
-//         height: '100vh',
-//         display: 'flex',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         fontSize: 40,
-//         color: '#010101'
-//       }}
-//     >
-//       React homework template
-//     </div>
-//   );
-// };
