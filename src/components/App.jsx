@@ -12,7 +12,6 @@ class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
     filter: '',
   };
 
@@ -38,12 +37,13 @@ class App extends Component {
 
   filterContacts = () => {
     const { contacts, filter } = this.state;
-    return contacts.filter(contact => {
-      return contact.name.toLowerCase().includes(filter.toLowerCase());
-    });
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   };
 
   render() {
+    const visibleContacts = this.filterContacts();
+
     return (
       <div
         style={{
@@ -56,7 +56,7 @@ class App extends Component {
         }}
       >
         <Form onSubmit={this.addContact} title="Phonebook" />
-        <Contacts contacts={this.state.contacts} title="Contacts">
+        <Contacts contacts={visibleContacts} title="Contacts">
           <Filter
             title="Find contacts by name"
             value={this.state.filter}
