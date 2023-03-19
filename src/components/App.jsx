@@ -59,6 +59,8 @@ class App extends Component {
           alignItems: 'center',
           fontSize: 40,
           color: '#010101',
+          marginLeft: '80px',
+          marginTop: '50px',
         }}
       >
         <Form onSubmit={this.addContact} title="Phonebook" />
