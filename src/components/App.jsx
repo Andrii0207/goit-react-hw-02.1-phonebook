@@ -23,7 +23,7 @@ class App extends Component {
     };
 
     this.state.contacts.find(
-      contact => newContact.name.toLowerCase() === contact.name.toLowerCase(),
+      contact => newContact.name.toLowerCase() === contact.name.toLowerCase()
     )
       ? alert(`${name} is already in contacts`)
       : this.setState(prevState => ({
@@ -44,7 +44,9 @@ class App extends Component {
   filterContacts = () => {
     const { contacts, filter } = this.state;
     const normalizedFilter = filter.toLowerCase();
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
@@ -64,7 +66,11 @@ class App extends Component {
         }}
       >
         <Form onSubmit={this.addContact} title="Phonebook" />
-        <Contacts contacts={visibleContacts} onDelete={this.deleteContact} title="Contacts">
+        <Contacts
+          contacts={visibleContacts}
+          onDelete={this.deleteContact}
+          title="Contacts"
+        >
           <Filter
             title="Find contacts by name"
             value={this.state.filter}
